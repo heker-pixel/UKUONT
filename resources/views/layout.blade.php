@@ -12,7 +12,8 @@
     <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.6/js/dataTables.bootstrap5.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.bootstrap5.css">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    
 </head>
 <body>
     <div class="container mt-5">
@@ -26,19 +27,10 @@ new DataTable('#tengplate', {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
-
-  var modalElement = document.getElementById('editModal');
-  modalElement.addEventListener('shown.bs.modal', function () {
-    var tooltipTriggerList = [].slice.call(modalElement.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl);
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     });
-  });
-});
-});
 </script>
 </html>

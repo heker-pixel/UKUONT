@@ -3,9 +3,11 @@
 @section('content')
     <h1>List of Barang</h1>
 
+    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Add new item to data">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
-        Create New Barang
+        <i class="fas fa-plus"></i> Create New Barang
     </button>
+    </span>
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -33,16 +35,21 @@
                     @endforeach
                     <td>
                         <!-- Button to Open the Edit Modal -->
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{ $item->id }}">
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Edit {{ $item->name }}?">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{ $item->id }} ">
                             <i class="fas fa-edit"></i>
                         </button>
-    
+                    </span>
+
                         <form action="{{ route('barang.destroy', $item->id) }}" method="POST" style="display:inline;" id="delete-form-{{ $item->id }}">
                             @csrf
                             @method('DELETE')
+                            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Delete {{ $item->name }}?">
+
                             <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $item->id }}, '{{ $item->name }}')">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
+                            </span>
                         </form>
                     </td>
                 </tr>
@@ -89,38 +96,5 @@ $(document).ready(function() {
             }
         });
     }
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.modal').forEach(function(modal) {
-        const form = modal.querySelector('form');
-        const originalValues = {};
-        
-        // Store the original values when the modal opens
-        form.querySelectorAll('input, textarea').forEach(function(input) {
-            originalValues[input.name] = input.value;
-        });
-        
-        // Function to check if values have changed
-        function checkIfChanged() {
-            let isChanged = false;
-            form.querySelectorAll('input, textarea').forEach(function(input) {
-                if (input.value !== originalValues[input.name]) {
-                    isChanged = true;
-                }
-            });
-            // Enable or disable the submit button based on changes
-            form.querySelector('button[type="submit"]').disabled = !isChanged;
-        }
-        
-        // Add event listeners to all input fields to check changes
-        form.querySelectorAll('input, textarea').forEach(function(input) {
-            input.addEventListener('input', checkIfChanged);
-        });
-
-        // Initialize the button state
-        checkIfChanged();
-    });
-});
-
     </script>
 @endsection

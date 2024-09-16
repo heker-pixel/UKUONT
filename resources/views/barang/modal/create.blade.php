@@ -42,9 +42,11 @@
                         <label for="price">Price:</label>
                         <input type="text" class="form-control" name="price" value="{{ old('price') }}">
                     </div>
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Submit your data">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-plus"></i> Create
                     </button>
+                    </span>
                 </form>
             </div>
         </div>

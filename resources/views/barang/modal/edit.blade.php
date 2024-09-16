@@ -1,5 +1,5 @@
 @foreach ($barang as $item)
-    <div class="modal fade" id="editModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal fade modaledit" id="editModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,7 +23,7 @@
                         </button>
                     </div>
                 @endif
-                    <form action="{{ route('barang.update', $item->id) }}" method="POST" id="editForm{{ $item->id }}">
+                    <form action="{{ route('barang.update', $item->id) }}" method="POST" id="editForm{{ $item->id }} ">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="form_type" value="edit-{{ $item->id }}">
@@ -43,9 +43,11 @@
                             <label for="price">Price:</label>
                             <input type="text" class="form-control" name="price" value="{{ old('price', $item->price) }}">
                         </div>
-                        <button type="submit" class="btn btn-primary" disabled data-bs-toggle="tooltip" data-bs-placement="bottom" title="The value in form must be altered before it can be clicked.">
+                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Save changes">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save"></i> Update
                         </button>
+                        </span>
                     </form>
                 </div>
             </div>
