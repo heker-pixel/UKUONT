@@ -43,7 +43,7 @@
                             <label for="price">Price:</label>
                             <input type="text" class="form-control" name="price" value="{{ old('price', $item->price) }}">
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" disabled>
                             <i class="fas fa-save"></i> Update
                         </button>
                     </form>

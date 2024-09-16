@@ -63,15 +63,13 @@ $(document).ready(function() {
             $('#createModal').modal('show');
         @elseif (strpos($formType, 'edit-') === 0)
             @php
-                $id = substr($formType, 5); // Extract the ID part after 'edit-'
+                $id = substr($formType, 5); 
             @endphp
             var modalId = '#editModal' + '{{ $id }}'; 
             $(modalId).modal('show');
         @endif
     @endif
 });
-
-
 
         function confirmDelete(itemId, itemName) {
         Swal.fire({
@@ -91,6 +89,38 @@ $(document).ready(function() {
             }
         });
     }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.modal').forEach(function(modal) {
+        const form = modal.querySelector('form');
+        const originalValues = {};
+        
+        // Store the original values when the modal opens
+        form.querySelectorAll('input, textarea').forEach(function(input) {
+            originalValues[input.name] = input.value;
+        });
+        
+        // Function to check if values have changed
+        function checkIfChanged() {
+            let isChanged = false;
+            form.querySelectorAll('input, textarea').forEach(function(input) {
+                if (input.value !== originalValues[input.name]) {
+                    isChanged = true;
+                }
+            });
+            // Enable or disable the submit button based on changes
+            form.querySelector('button[type="submit"]').disabled = !isChanged;
+        }
+        
+        // Add event listeners to all input fields to check changes
+        form.querySelectorAll('input, textarea').forEach(function(input) {
+            input.addEventListener('input', checkIfChanged);
+        });
+
+        // Initialize the button state
+        checkIfChanged();
+    });
+});
 
     </script>
 @endsection
